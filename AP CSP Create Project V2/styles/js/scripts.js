@@ -49,11 +49,6 @@
 		/*
 			One Page Nav
 		*/
-		var url_hash = location.hash;
-		var sectionElem = $(url_hash);
-		if(url_hash.indexOf('#section-') == 0 && sectionElem.length){
-			$('body, html').animate({scrollTop: $(url_hash).offset().top - 68}, 400);
-		}
 
 		/*
 			Jarallax
@@ -154,49 +149,6 @@
 	if(width < 783) {
 		$('.section.started').css({'height': height});
 		$('.logged-in .section.started').css({'height': height-46});
-	}
-
-	/*
-		Grained
-	*/
-	if(!$('.grained-off').length){
-	var grained_options = {
-		'animate': true,
-		'patternWidth': 400,
-		'patternHeight': 400,
-		'grainOpacity': 0.15,
-		'grainDensity': 3,
-		'grainWidth': 1,
-		'grainHeight': 1
-	}
-	grained('#grained_container', grained_options);
-	}
-	
-	/*
-		Cursor Effects
-	*/
-	if(width > 1199) {
-		$(document).on('mousemove', function(e){ 
-			var x = e.pageX;
-			var y = e.pageY;
-			var newposX = x;
-			var newposY = y;
-			$('.cursor-follower').css('transform','translate3d('+newposX+'px,'+newposY+'px,0px)');
-		});
-		$('a, .btn-group').on({
-			mouseenter: function (e) {
-				cursor_over();
-			},
-			mouseleave: function (e) {
-				cursor_out();
-			}
-		});
-	}
-	function cursor_over(){
-		$(".cursor-follower").stop().animate({width: 86, height: 86, opacity: 0.1, margin: '-43px 0 0 -43px'}, 500);
-	}
-	function cursor_out(){
-		$(".cursor-follower").stop().animate({width: 26, height: 26, opacity: 0.4, margin: '-13px 0 0 -13px'}, 500);
 	}
 
 	/*
@@ -381,87 +333,6 @@
 			mainClass: 'mfp-fade'
 		});
 	}
-
-	/*
-		Media popup
-	*/
-	$('.has-popup-media').magnificPopup({
-		type: 'inline',
-		overflowY: 'auto',
-		closeBtnInside: true,
-		mainClass: 'mfp-fade'
-	});
-
-	/*
-		Image popup
-	*/
-	$('.has-popup-image').magnificPopup({
-		type: 'image',
-		closeOnContentClick: true,
-		mainClass: 'mfp-fade',
-		image: {
-			verticalFit: true
-		}
-	});
-	
-	/*
-		Video popup
-	*/
-	$('.has-popup-video').magnificPopup({
-		disableOn: 700,
-		type: 'iframe',
-		iframe: {
-            patterns: {
-                youtube_short: {
-                  index: 'youtu.be/',
-                  id: 'youtu.be/',
-                  src: 'https://www.youtube.com/embed/%id%?autoplay=1'
-                }
-            }
-        },
-		removalDelay: 160,
-		preloader: false,
-		fixedContentPos: false,
-		mainClass: 'mfp-fade',
-		callbacks: {
-			markupParse: function(template, values, item) {
-				template.find('iframe').attr('allow', 'autoplay');
-			}
-		}
-	});
-	
-	/*
-		Music popup
-	*/
-	$('.has-popup-music').magnificPopup({
-		disableOn: 700,
-		type: 'iframe',
-		removalDelay: 160,
-		preloader: false,
-		fixedContentPos: false,
-		mainClass: 'mfp-fade'
-	});
-
-	/*
-		Gallery popup
-	*/
-	$('.has-popup-gallery').on('click', function() {
-        var gallery = $(this).attr('href');
-    
-        $(gallery).magnificPopup({
-            delegate: 'a',
-            type:'image',
-            closeOnContentClick: false,
-            mainClass: 'mfp-fade',
-            removalDelay: 160,
-            fixedContentPos: false,
-            gallery: {
-                enabled: true
-            }
-        }).magnificPopup('open');
-
-        return false;
-    });
 
 	/*
 		Background enabled

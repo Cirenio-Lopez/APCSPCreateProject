@@ -1,4 +1,4 @@
-<?php include('login_user.php') ?>
+<?php include('server/entry.php') ?>
 <!doctype html>
 <html lang="en-US">
 	<head>
@@ -59,7 +59,7 @@
 										<a href="/">Home</a>
 									</li>
 									<li class="menu-item">
-										<a href="team.html">Team</a>
+										<a href="team.php">Team</a>
 									</li>
 									<li class="menu-item">
 										<a href="sponsors.html">Sponsors</a>
@@ -98,8 +98,8 @@
 						</div>
 						<!-- form -->
 						<div class="contact_form content-box">
-							<form method="post" action="login_user.php">
-								<?php include('errors.php'); ?>
+							<form method="post" action="server/entry.php">
+								<?php include('server/errors.php'); ?>
 								<div class="group-val">
 									<input type="text" name="username" placeholder="Username" value="<?php echo $username ?>" />
 								</div>
