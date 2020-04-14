@@ -1,5 +1,5 @@
 <?php
-	include('config.php');
+	include('server/config.php');
 	session_start();
 ?>
 <!doctype html>
@@ -51,6 +51,14 @@
 				?>
 			</div>
 		<?php endif ?>
+		<?php if (isset($_SESSION['error'])) : ?>
+			<div class="error">
+				<?php
+					echo $_SESSION['error'];
+					unset($_SESSION['error']);
+				?>
+			</div>
+		<?php endif ?>
 		<div class="container">
 			<!-- Header -->
 			<header class="header">
@@ -73,7 +81,7 @@
 										<a href="/">Home</a>
 									</li>
 									<li class="menu-item">
-										<a href="team.html">Team</a>
+										<a href="team.php">Team</a>
 									</li>
 									<li class="menu-item">
 										<a href="sponsors.html">Sponsors</a>
@@ -102,7 +110,7 @@
                   <div class="centrize full-width">
                     <div class="vertical-center">
                       <div class="started-content">
-                        <h1 class="h-title">
+                        <h1 class="h-title" id="Main-Index">
 						<?php if (isset($_SESSION['logged_in'])) : ?>
 							<a class="fa fa-ellipsis-h editable" id="edit-toggle" href="#"></a>
 							<div class="edit-menu" id="ellipsis">
@@ -118,7 +126,7 @@
 							</div>
 						<?php endif ?>
 						<?php 
-							$select = "SELECT * FROM `index` WHERE content='Main';";
+							$select = "SELECT * FROM `index` WHERE content='Main-Index';";
 							$result = mysqli_query($link, $select);
 							if($result)
 							{
@@ -205,8 +213,10 @@
 			});
 			$("#submit_edit").click(function ()
 			{
+				var id = $(this).parent().parent().parent().attr('id');
 				var delta = quill.root.innerHTML;
-				$.post("index_upload.php",{description: delta}, function(){});
+				var curr_url = window.location.href;
+				$.post("server/cms.php",{content: delta, id: id, curr_url: curr_url}, function(){});
 				$("#edit-overlay").toggle();
 				location.reload();
 			});
