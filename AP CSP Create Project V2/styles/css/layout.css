@@ -653,7 +653,7 @@
 .section.started .started-content .h-title {
 	margin: 0;
 	position: absolute;
-	left: calc(20% + 35px);
+	right: calc(20% + 35px);
 	bottom: 50px;
 	max-width: 560px;
 	font-size: 20px;

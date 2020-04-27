@@ -47,10 +47,6 @@
 		}, 1000);
 
 		/*
-			One Page Nav
-		*/
-
-		/*
 			Jarallax
 		*/
 		if($('.jarallax').length){
